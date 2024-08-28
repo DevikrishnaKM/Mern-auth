@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
 import UserRoute from './routes/userRoute.js'
 import AuthRoute from './routes/authRoute.js'
 
@@ -11,6 +12,8 @@ mongoose.connect(process.env.MONGO).then(() => console.log('Connected to MongoDB
 const app = express()
 
 app.use(express.json())
+
+app.use(cookieParser())
 
 app.use("/api/user", UserRoute)
 app.use("/api/auth", AuthRoute)
