@@ -5,13 +5,17 @@ import About from './pages/About'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
+import AdminHome from './pages/Admin/AdminHome'
 import PrivateRoute from './components/PrivateRoute'
 import Login from './pages/Admin/Login'
+// import AdminPrivateRoute from './components/AdminPrivateRoute'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <BrowserRouter>
-      
+    <ToastContainer />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
@@ -24,6 +28,9 @@ const App = () => {
 
     <Routes>
       <Route path="/admin" element={<Login />} />
+      {/* <Route element={<AdminPrivateRoute />}> */}
+         <Route path="/admin/home" element={<AdminHome />} />
+      {/* </Route> */}
     </Routes>
 
     </BrowserRouter>

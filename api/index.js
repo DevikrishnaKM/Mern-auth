@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
+import adminRoute from './routes/adminRoute.js'
 import UserRoute from './routes/userRoute.js'
 import AuthRoute from './routes/authRoute.js'
 
@@ -19,6 +20,7 @@ app.use(cookieParser())
 
 app.use("/api/user", UserRoute)
 app.use("/api/auth", AuthRoute)
+app.use("/api/admin", adminRoute)
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500
