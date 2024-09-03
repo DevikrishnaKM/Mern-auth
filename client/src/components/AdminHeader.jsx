@@ -9,6 +9,22 @@ export default function AdminHeader(){
     const dispatch= useDispatch()
 
     
+    const handleLogOut =async ()=>{
+      try{
+          await fetch('/api/admin/logout');
+          dispatch(adminLogout())
+          navigate('/admin')
+          toast.success('Sign Out Successfull',{
+           className:'text-green-600',
+           autoClose: 1000,
+           hideProgressBar: true
+         })
+         }catch(error){
+       console.log(error)
+         }
+       }
+
+    
          return (
             <div className="bg-slate-200">
               <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
@@ -20,7 +36,9 @@ export default function AdminHeader(){
                   (<li className="text-slate-600">{admin.name}</li>):''
                   }
                  
-                 
+                 {admin?
+                    (<li onClick={handleLogOut} className="text-red-600 font-bold cursor-pointer">Sign Out</li>):''
+                    }
                 
                 </ul>
               </div>
