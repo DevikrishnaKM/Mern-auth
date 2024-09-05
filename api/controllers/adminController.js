@@ -15,7 +15,7 @@ export const adminLogin = async (req, res, next) => {
 
          const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET);
         const { password: _, ...rest } = admin._doc;
-        const expiryDate = new Date(Date.now() + 360000);
+        const expiryDate = new Date(Date.now() + 1000 * 60 * 60 * 24 * 7);
         res
           .cookie("access_token", token, { httpOnly: true, expires: expiryDate })
           .status(200)
@@ -67,3 +67,46 @@ export const addUser = async(req,res,next)=>{
     }
   }
 
+  export const edituserData = async (req, res) => {
+    try {
+      const id = req.params.id;
+  
+      const user = await User.findOne({ _id: id });
+      res.status(200).json(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  export const userEdit = async (req,res)=>{
+    try{
+      const{userName,email} = req.body;
+      const {id} = req.params;
+      const editedUser = await User.findByIdAndUpdate(
+        {_id:id},
+        {
+            $set:{
+                username :userName,
+                email:email,
+            }
+        }
+       );
+       console.log(`Edited User : ${editedUser}`)
+        res.json({ success: true });
+    }catch(error){
+      console.log(error)
+    }
+  
+  }
+
+  export const deleteuser = async (req, res) => {
+    try {
+      const deleteduser = await User.deleteOne({ _id: req.params.id });
+      console.log(deleteduser);
+      res.status(200).json("user deleted");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  

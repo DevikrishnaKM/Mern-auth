@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { adminLogin, adminLoginFailure } from "../../redux/admin/adminSlice.js";
 import { toast } from "react-toastify";
+import AdminHeader from "../../components/AdminHeader.jsx";
 
 export default function Login() {
   const [formData, setFormData] = useState({});
@@ -56,6 +57,8 @@ export default function Login() {
     }
   };
   return (
+    <>
+    <AdminHeader/>
     <div className="p-3 max-w-md mx-auto ">
       <h1 className="text-3xl text-slate-700 text-center font-semibold my-14 ">
         Admin Sign In
@@ -83,5 +86,6 @@ export default function Login() {
         </button>
       </form>
     </div>
+    </>
   );
 }

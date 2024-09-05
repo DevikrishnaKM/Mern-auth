@@ -24,38 +24,38 @@ function AdminHome() {
   }, [data]);
   console.log(users)
 
-  // const handleEdit = (id) => {
-  //   navigate(`/admin/edit/${id}`);
-  // };
+  const handleEdit = (id) => {
+    navigate(`/admin/edit/${id}`);
+  };
 
-  // const handleDelete = (id) => {
+  const handleDelete = (id) => {
     
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: `You are about to delete this user. This action cannot be undone.`,
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#94A3B8",
-  //     cancelButtonColor: "#475569",
-  //     confirmButtonText: "Yes, delete it!",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       const token = localStorage.getItem("adminToken");
-  //       axios
-  //         .get(`/api/admin/deleteUser/${id}`, {
-  //           headers: {
-  //             Authorization: token,
-  //           },
-  //         })
-  //         .then((res) => {
-  //           console.log(res)
-  //           setData((prev) => prev + 1);
-  //           Swal.fire("Deleted!", `User has been deleted.`, "success");
-  //         })
-  //         .catch((err) => console.log(err));
-  //     }
-  //   });
-  // };
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to delete this user. This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#94A3B8",
+      cancelButtonColor: "#475569",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const token = localStorage.getItem("adminToken");
+        axios
+          .get(`/api/admin/deleteUser/${id}`, {
+            headers: {
+              Authorization: token,
+            },
+          })
+          .then((res) => {
+            console.log(res)
+            setData((prev) => prev + 1);
+            Swal.fire("Deleted!", `User has been deleted.`, "success");
+          })
+          .catch((err) => console.log(err));
+      }
+    });
+  };
 
   
   const filteredUsers = users.filter((val) =>
@@ -117,13 +117,13 @@ function AdminHome() {
                       </td>
                       <td className="border border-gray-300 px-4 py-2">
                         <button
-                          // onClick={() => handleEdit(user._id)}
+                           onClick={() => handleEdit(user._id)}
                           className="bg-slate-500 hover:bg-slate-400 text-white font-bold py-1 px-2 rounded mr-2"
                         >
                           Edit
                         </button>
                         <button
-                          // onClick={() => handleDelete(user._id)}
+                           onClick={() => handleDelete(user._id)}
                           className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-1 px-2 rounded"
                         >
                           Delete
